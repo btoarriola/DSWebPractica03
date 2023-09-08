@@ -6,9 +6,10 @@ ALTER DATABASE mydb OWNER TO myuser;
 \connect mydb
 
 CREATE TABLE mytable(
-	clave integer NOT NULL,
+	clave SERIAL NOT NULL,
 	nombre character varying,
 	direccion character varying,
+	telefono character varying,
 	CONSTRAINT pk_clave PRIMARY KEY (clave)
 );
 
