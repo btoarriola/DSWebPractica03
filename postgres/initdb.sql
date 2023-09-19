@@ -13,4 +13,4 @@ CREATE TABLE mytable(
 	CONSTRAINT pk_clave PRIMARY KEY (clave)
 );
 
-ALTER TABLE mytable OWNER TO myuser;
+ALTER TABLE mytable OWNER TO myuser; 
