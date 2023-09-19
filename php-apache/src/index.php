@@ -1,8 +1,23 @@
 <?php
+session_start();
+
 $url = "pgsql:host=172.17.0.3;port=5432;dbname=mydb;";
 $pdo = new PDO($url, "postgres", "pass", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
 $errors = [];
+
+// Verifica si el usuario está autenticado, si no lo está, redirige a login.php
+if (!isset($_SESSION["nombre"])) {
+    header("Location: login.php");
+    exit();
+}
+//cerrar sesion
+if (isset($_POST["cerrar_sesion"])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
@@ -164,5 +179,8 @@ if (isset($_GET['eliminar'])) {
             return true;
         }
     </script>
+    <form method="post" action="">
+        <input type="submit" name="cerrar_sesion" value="Cerrar Sesión">
+    </form>
 </body>
-</html>
+</html> 
